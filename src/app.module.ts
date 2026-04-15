@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './Modules/users/entities/user.entity';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -15,7 +16,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     username: 'postgres',
     password: 'sushanka@123',
     database: 'SocialSite',
-    entities: [],
+    // entities: [User], //add this line to include the User entity
+    autoLoadEntities: true, // This will automatically load entities from the specified paths
     synchronize: true, // This should be false in production
   }),],
   controllers: [AppController],
