@@ -1,5 +1,11 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
+export enum UserRole {
+    USER = 'user',
+    ADMIN = 'admin',
+    MODERATOR = 'moderator'
+}
+
 @Entity()
 export class User {
     @PrimaryGeneratedColumn()
@@ -19,4 +25,7 @@ export class User {
 
     @Column({ nullable: true })
     lastLoginAt?: Date;
+
+    @Column({ enum: UserRole, default: UserRole.USER })
+    role!: UserRole;
 }

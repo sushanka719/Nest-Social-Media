@@ -3,8 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './Modules/users/entities/user.entity';
-
+import { UsersModule } from './Modules/users/users.module';
 @Module({
   imports: [ConfigModule.forRoot({
     isGlobal: true,
@@ -19,7 +18,10 @@ import { User } from './Modules/users/entities/user.entity';
     // entities: [User], //add this line to include the User entity
     autoLoadEntities: true, // This will automatically load entities from the specified paths
     synchronize: true, // This should be false in production
-  }),],
+  }),
+
+    UsersModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
